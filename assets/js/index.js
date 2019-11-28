@@ -1,13 +1,14 @@
 'use strict';
 
-const LINK_PATTERN = /<a .*?href\s*?=\s*?"(?<linkValue>.*?)".*?>(?<linkName>.*?)<\/a\s*?>/g;
+const LINK_PATTERN = /<a .*?href\s*?=\s*?"(?<linkValue>.*?\byoutube\b.*? )".*?>(?<linkName>.*?)<\/a\s*?>/g;
+
 const LINK_PARSER_PATTARN = new RegExp(LINK_PATTERN.source);
 
 const textareaElem = document.querySelector("textarea[name = 'userHtml']");
 const fromElem = document.getElementsByTagName("form")[0];
 const tbodyElem = document.getElementsByTagName('tbody')[0];
 
-fromElem.onsubmit = function () {
+fromElem.onkeydown = function () {
 
     const result = textareaElem.value.match(LINK_PATTERN);
     tbodyElem.innerHTML = "";
